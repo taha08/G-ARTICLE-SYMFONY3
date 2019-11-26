@@ -1,0 +1,21 @@
+ {% extends "back.html.twig" %}
+
+ {% block content %}
+ 
+   <h1>page admin</h1>
+
+   <p>{{app.user.id}}</p>
+   <p>{{app.user.email}}</p>
+
+   {% endblock %}
+
+{% block  breadcrump %}
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Tableau de bord</a></li>
+      <li class="breadcrumb-item active">list des categories</li>
+    </ol>
+   
+       
+{% endblock %}
+ 
+ 

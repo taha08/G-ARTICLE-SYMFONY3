@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel=" stylesheet" href="{{ asset('back/bootstrap.css')}}" />
+        <link rel=" stylesheet" href="{{ asset('fontawesome/css/all.css')}}" />
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">AppSymfony</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link " href="#">Acceuil <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact</a>
+      </li>
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    
+       <i class="fas fa-cog fa-spin" style="color:grey;font-size:30px;"></i> <a style=" margin-right:30px;"> connecté en tantque : {{ app.user.username}} </a> 
+       <button class="btn btn-secondary my-2 my-sm-0" type="submit"> <i class="fas fa-sign-out-alt"></i>  <a href= "{{path('fos_user_security_logout')}}" >{{'layout.logout' | trans({}, 'FOSUserBundle')}}</a></button>
+    
+    {% else %}
+      
+      <button class="btn btn-secondary my-2 my-sm-0" style="margin-right:15px;" type="submit">  <i class="fas fa-sign-in-alt"></i> <a href="{{path('fos_user_security_login')}}"> {{'layout.login' | trans({}, 'FOSUserBundle')}} </a></button>
+      <button class="btn btn-secondary my-3 my-sm-0" type="submit">  <i class="fas fa-user"></i>  <a href="{{path('fos_user_registration_register')}}">{{'layout.register' | trans({}, 'FOSUserBundle')}}</a></button>
+    {% endif %}
+    </form>
+  </div>
+</nav>
+
+  <div class="container-fluid" style="margin-top: 30PX;">
+    <div class="row">
+      <div class="col-md-6">
+          {% block breadcrump %}{% endblock %}
+
+      </div>
+      
+      <div class="col-md-6" >
+          <select name="acces rapide"class="custom-select" style=" width: 30%; float: right;" >
+              <option selected="">Nouveau article</option>
+              <option value="1">Nouvelle categorie</option>
+            
+            </select>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="list-group">
+      
+          <a href="#" class="list-group-item list-group-item-action">Tableau de Bord
+          </a>
+          <p class="list-group-item list-group-item-action disabled">Catégorie
+          </p>
+          <a href="{{ path('admin_category_index') }}" class="list-group-item list-group-item-action">Liste des catégories
+          </a>
+          <a href="{{ path('admin_category_new') }}" class="list-group-item list-group-item-action">Nouvelle catégorie
+          </a>
+          <p class="list-group-item list-group-item-action disabled">Article
+          </p>
+          <a href="{{ path('admin_post_index') }}" class="list-group-item list-group-item-action">Liste des Articles
+          </a>
+          <a href="{{ path('admin_post_new') }} " class="list-group-item list-group-item-action">Nouvelle Article
+          </a>
+          <p class="list-group-item list-group-item-action disabled">Administration
+          </p>
+          <a href="#" class="list-group-item list-group-item-action">Statistiques
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">Paramétrage
+          </a>
+
+        </div>
+      
+      </div>
+      <div class="col-md-10 well">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+
+        
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

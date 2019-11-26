@@ -1,0 +1,43 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+  
+<h1>liste des Postes</h1>
+    
+<div class="fa-pull-right">
+        <a style="margin-top:-120px;"class=" btn btn-success" href="{{ path('admin_post_new') }}"> <i class="fa fa-plus"></i> Nouveau post</a>
+</div>
+    
+<div class="row">
+
+        {% for post in posts %}
+            
+            <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('uploads/posts/'~ post.image)}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title"> {{ post.title }}</h5>
+                              <p class="card-text">{{ post.body | slice(0,80)}}</p>
+                              <a href="{{ path('admin_post_show', { 'id': post.id }) }}" class="btn btn-primary"> Afficher</a>
+                              <a href="{{ path('admin_post_edit', { 'id': post.id }) }}" class="btn btn-warning"> Modifier</a>
+                            </div>
+                          </div>
+            </div>
+              
+            {% endfor %}
+
+        </div> 
+
+
+
+{% endblock %}
+
+{% block breadcrump %}
+<ol class="breadcrumb">
+   <li class="breadcrumb-item"><a href="#">Tableau de bord</a></li>
+   
+   <li class="breadcrumb-item active">liste des catégorie</li>
+</ol>
+
+{% endblock %}
+

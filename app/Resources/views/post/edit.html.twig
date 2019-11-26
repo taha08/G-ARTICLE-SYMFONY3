@@ -1,0 +1,60 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <h1>Modifier le Post </h1>
+      
+
+      {{ form_start(edit_form) }}
+
+        <div class="row">
+            <div class="col-md-8">
+        
+                <div class="form-group">
+
+                {{ form_row(edit_form.title,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(edit_form.description,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="form-group">
+                {{ form_row(edit_form.slug,{'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(edit_form.body,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            </div>
+
+            <div class="col-md-4">
+
+      <div class="form-group">
+          {{ form_row(edit_form.datepublish,{'attr': {'class': 'form-control'}}) }}
+      </div>
+       <div class="form-group">
+          {{ form_row(edit_form.image,{'required':false ,'attr': {'class': 'form-control'}}) }}
+      </div>
+
+      <div class="form-group"> 
+          {{ form_row(edit_form.categorie,{'attr': {'class': 'form-control'}}) }}
+      </div>
+      <hr>
+
+        <input class=" btn btn-warning"type="submit" value="editer" />
+        <a class="btn btn-light" href="{{ path('admin_post_index') }}">retour</a>
+
+        </div> 
+        </div>
+    {{ form_end(edit_form) }}
+   
+   {% endblock %}
+   
+    {% block breadcrump %}
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('admin_post_index') }}">Tableau de bord</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('admin_post_index') }}">liste des catégorie</a></li>
+            <li class="breadcrumb-item active">{{ post.title }}</li>
+        </ol>
+
+    
+{% endblock %}

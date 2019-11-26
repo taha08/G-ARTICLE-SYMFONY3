@@ -1,0 +1,33 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <h3> Edition de catégorie </h3>
+
+    {{ form_start(edit_form) }}
+        <div class="form-group">
+
+          {{ form_row(edit_form.libele,{'attr': {'class': 'form-control'}}) }}
+      </div>
+      <div class="form-group">
+          {{ form_row(edit_form.description,{'attr': {'class': 'form-control'}}) }}
+      </div>
+      
+      <div class="form-group">
+          {{ form_row(edit_form.slug,{'attr': {'class': 'form-control'}}) }}
+      </div>
+      <hr>
+
+        <input class=" btn btn-warning"type="submit" value="editer" />
+        <a class="btn btn-light" href="{{ path('admin_category_index') }}">retour</a>
+    {{ form_end(edit_form) }}
+
+{% endblock %}
+
+{% block breadcrump %}
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('admin_category_index') }}">Tableau de bord</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('admin_category_index') }}">liste des catégorie</a></li>
+            <li class="breadcrumb-item active">{{ category.libele }}</li>
+        </ol>
+
+    {% endblock %}

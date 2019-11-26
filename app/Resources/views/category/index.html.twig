@@ -1,0 +1,47 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <h3> liste des categories</h3>
+    <div class="fa-pull-right">
+        <a style="margin-bottom:10px;"class=" btn btn-success" href="{{ path('admin_category_new') }}"> <i class="fa fa-plus"></i> Nouvelle catégorie</a>
+</div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libele</th>
+                <th>Description</th>
+                <th>Slug</th> 
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td><a href="{{ path('admin_category_show', { 'id': category.id }) }}">{{ category.id }}</a></td>
+                <td nowrap="nowrap">{{ category.libele }}   </td>
+                <td>{{ category.description | slice(0,50) }}</td>
+                <td>{{ category.slug }}</td>
+              
+                <td nowrap="nowrap">
+                    
+                            <a style="margin-right:5PX ;"class="btn btn-info" href="{{ path('admin_category_show', { 'id': category.id }) }}">show</a>
+                        
+                        
+                            <a class="btn btn-warning" href="{{ path('admin_category_edit', { 'id': category.id }) }}">edit</a>
+                       
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block breadcrump %}
+    <nav class="breadcrumb">
+        <a class="breadcrumb-item" href="#">Tableau de bord</a>
+        <span class="breadcrumb-item active">liste des catégories</span>
+    </nav>
+{% endblock %}

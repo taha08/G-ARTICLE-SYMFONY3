@@ -1,0 +1,35 @@
+{% extends 'back.html.twig' %}
+
+{% block content %}
+    <h3>Nouvelle category</h3>
+
+    {{ form_start(form) }}
+        
+ <div class="form-group {% if form.libele.vars.errors | length > 0 %} has-danger {% endif %} ">
+ 
+
+          {{ form_row(form.libele,{'required':false,'attr': {'class': 'form-control {% if form.libele.vars.errors | length > 0 %} is-invalid {% endif %}'}}) }}
+
+      </div>
+      <div class="form-group">
+          {{ form_row(form.description,{'required':false,'attr': {'class': 'form-control'}}) }}
+      </div>
+      
+      <div class="form-group">
+          {{ form_row(form.slug,{'required':false,'attr': {'class': 'form-control {% if form.slug.vars.errors | length > 0 %} is-invalid {% endif %}'}}) }}
+      </div>
+      <hr>
+
+        <input class=" btn btn-secondary"type="submit" value="enregistrer" />
+        <a class="btn btn-light" href="{{ path('admin_category_index') }}">retour</a>
+    {{ form_end(form) }}
+
+    {% endblock %}
+    {% block breadcrump %}
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Tableau de bord</a></li>
+            <li class="breadcrumb-item"><a href="#">liste des catégorie</a></li>
+            <li class="breadcrumb-item active">Nouvelle catégorie</li>
+        </ol>
+
+    {% endblock %}
